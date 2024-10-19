@@ -1,0 +1,7 @@
+public static Node combineRules(Node[] rules) {
+    Node combinedRoot = rules[0];
+    for (int i = 1; i < rules.length; i++) {
+        combinedRoot = new Node("operator", combinedRoot, rules[i], "AND");
+    }
+    return combinedRoot;
+}

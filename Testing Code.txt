@@ -1,0 +1,10 @@
+public static void main(String[] args) {
+    Node rule1 = RuleEngine.createRule("age > 30 AND department == 'Sales'");
+    Node rule2 = RuleEngine.createRule("salary > 50000 OR experience > 5");
+    
+    Node combinedRule = RuleEngine.combineRules(new Node[] { rule1, rule2 });
+
+    Map<String, Object> userData = Map.of("age", 35, "department", "Sales", "salary", 60000, "experience", 3);
+    boolean isEligible = RuleEngine.evaluateRule(combinedRule, userData);
+    System.out.println("Eligibility: " + isEligible);  // Expected: true
+}

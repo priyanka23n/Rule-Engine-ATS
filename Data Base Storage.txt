@@ -1,0 +1,9 @@
+{
+  "_id": "rule1",
+  "rule": {
+    "type": "operator",
+    "value": "AND",
+    "left": { ... },
+    "right": { ... }
+  }
+}

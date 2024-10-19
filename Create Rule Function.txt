@@ -1,0 +1,26 @@
+import javax.script.ScriptEngineManager;
+import javax.script.ScriptEngine;
+import javax.script.ScriptException;
+
+public class RuleEngine {
+
+    // Method to parse rule string and create AST Node
+    public static Node createRule(String ruleString) {
+        // Parse the rule (this can be enhanced with a real parser for complex expressions)
+        return parseToNode(ruleString);
+    }
+
+    // Simple function to parse rule string (you can replace this with more advanced parsing)
+    private static Node parseToNode(String expression) {
+        if (expression.contains("AND")) {
+            String[] parts = expression.split("AND");
+            return new Node("operator", parseToNode(parts[0].trim()), parseToNode(parts[1].trim()), "AND");
+        } else if (expression.contains("OR")) {
+            String[] parts = expression.split("OR");
+            return new Node("operator", parseToNode(parts[0].trim()), parseToNode(parts[1].trim()), "OR");
+        } else {
+            // Operand (like age > 30)
+            return new Node("operand", expression.trim());
+        }
+    }
+}

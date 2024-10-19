@@ -1,0 +1,23 @@
+public class Node {
+    String type;  // "operator" or "operand"
+    String value; // e.g., "age > 30" for operand or "AND/OR" for operator
+    Node left;    // Left child node
+    Node right;   // Right child node
+
+    // Constructor for operands
+    public Node(String type, String value) {
+        this.type = type;
+        this.value = value;
+        this.left = null;
+        this.right = null;
+    }
+
+    // Constructor for operators
+    public Node(String type, Node left, Node right, String value) {
+        this.type = type;
+        this.left = left;
+        this.right = right;
+        this.value = value;
+    }
+}
+

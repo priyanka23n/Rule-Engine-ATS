@@ -1,0 +1,36 @@
+import java.util.Map;
+
+public static boolean evaluateRule(Node node, Map<String, Object> data) {
+    if (node.type.equals("operator")) {
+        if (node.value.equals("AND")) {
+            return evaluateRule(node.left, data) && evaluateRule(node.right, data);
+        } else if (node.value.equals("OR")) {
+            return evaluateRule(node.left, data) || evaluateRule(node.right, data);
+        }
+    } else if (node.type.equals("operand")) {
+        // Extract and evaluate the condition
+        String[] parts = node.value.split(" ");
+        String field = parts[0]; // e.g., "age"
+        String operator = parts[1]; // e.g., ">"
+        int value = Integer.parseInt(parts[2]); // e.g., 30
+        
+        int fieldValue = (int) data.get(field); // Get the value from the dataset
+
+        // Handle basic comparisons
+        switch (operator) {
+            case ">":
+                return fieldValue > value;
+            case "<":
+                return fieldValue < value;
+            case "==":
+                return fieldValue == value;
+            case ">=":
+                return fieldValue >= value;
+            case "<=":
+                return fieldValue <= value;
+            default:
+                return false;
+        }
+    }
+    return false;
+}
